@@ -23,6 +23,17 @@ namespace AddressBook
                         string input = Console.ReadLine();
                         addressbook.EditContact(input);
                         break;
+                    case 3:
+                        Console.WriteLine("Enter the name of contact details to be deleted");
+                        string name = Console.ReadLine();
+                        addressbook.DeleteContact(name);
+                        break;
+                    case 4:
+                        addressbook.Display();
+                        break;
+                    case 5:
+                        flag = false;
+                        break;
 
                 }
             }
