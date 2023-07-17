@@ -8,6 +8,7 @@ namespace AddressBook
 {
     public class AddressBook
     {
+        List<Contact> createAddressBook = new List<Contact>();
         public void CreateContact()
         {
             Console.WriteLine("Enter the details\n 1.First Name:\n 2.Last Name:\n 3.Address:\n 4.City:\n 5.State:\n" +
@@ -27,6 +28,7 @@ namespace AddressBook
                 + "Last Name:" + contact.LastName + '\n' + "Address:" + contact.Address + '\n' + "City:"
                 + contact.City + '\n' + "State:" + contact.State + '\n' + "Zip:" + contact.Zip + '\n'
                 + "PhoneNumber:" + contact.PhoneNumber + '\n' + "Email:" + contact.Email + '\n');
+            createAddressBook.Add(contact);
         }
     }
 }
