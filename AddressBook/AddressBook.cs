@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,6 +39,11 @@ namespace AddressBook
             dict.Add(uniqueName, createAddressBook);
             createAddressBook = new List<Contact>();
 
+        }
+        public void AddToJsonFile(string filePath)
+        {
+            var json = JsonConvert.SerializeObject(dict);
+            File.WriteAllText(filePath, json);
         }
         public void EditContact(string name, string contactName)
         {
@@ -82,7 +88,7 @@ namespace AddressBook
                 else { Console.WriteLine("No Contact has been found"); }
             }
         }
-        public void DeleteContact(string name)
+        public void DeleteContact(string name, string contactName)
         {
             Contact contact = new Contact();
             foreach (var data in dict)
