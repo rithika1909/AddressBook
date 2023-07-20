@@ -5,7 +5,7 @@ namespace AddressBook
     {
         public static void Main(string[] args)
         {
-
+            string key = null, input = null;
             AddressBook addressbook = new AddressBook();
             Console.WriteLine("Enter the option to proceed\n 1.Create Contact\n 2.Add to Dictionary\n 3.Edit Contact\n 4.Display Contact\n 5.Exit ");
             bool flag = true;
@@ -21,9 +21,11 @@ namespace AddressBook
                         addressbook.AddAddressBookToDictionary();
                         break;
                     case 3:
+                        Console.WriteLine("Enter key");
+                        key = Console.ReadLine();
                         Console.WriteLine("Enter the name of contact details to be deleted");
                         string name = Console.ReadLine();
-                        addressbook.EditContact(name);
+                        addressbook.EditContact(key,input);
                         break;
                     case 4:
                         addressbook.Display();

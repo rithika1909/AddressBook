@@ -36,43 +36,46 @@ namespace AddressBook
         {
             string uniqueName = Console.ReadLine();
             dict.Add(uniqueName, createAddressBook);
-            createAddressBook = null;
+            createAddressBook = new List<Contact>();
 
         }
-        public void EditContact(string name)
+        public void EditContact(string name, string contactName)
         {
             foreach (var data  in dict)
             {
-                if(data.Key.Equals(name))
+                if (data.Key.Equals(name))
                 {
-                    if (contact.FirstName.Equals(name) || contact.LastName.Equals(name))
+                    foreach (var contact in data.Value)
                     {
-                        Console.WriteLine("Enter the option to edit\n 1.Last Name\n 2.Address\n 3.City\n 4.State\n " +
-                        " 5.Zip\n 6.Phone Number\n 7.Email");
-                        int option = Convert.ToInt32(Console.ReadLine());
-                        switch (option)
+                        if (contact.FirstName.Equals(name) || contact.LastName.Equals(name))
                         {
-                            case 1:
-                                contact.LastName = Console.ReadLine();
-                                break;
-                            case 2:
-                                contact.Address = Console.ReadLine();
-                                break;
-                            case 3:
-                                contact.City = Console.ReadLine();
-                                break;
-                            case 4:
-                                contact.State = Console.ReadLine();
-                                break;
-                            case 5:
-                                contact.Zip = Console.ReadLine();
-                                break;
-                            case 6:
-                                contact.PhoneNumber = Console.ReadLine();
-                                break;
-                            case 7:
-                                contact.Email = Console.ReadLine();
-                                break;
+                            Console.WriteLine("Enter the option to edit\n 1.Last Name\n 2.Address\n 3.City\n 4.State\n " +
+                            " 5.Zip\n 6.Phone Number\n 7.Email");
+                            int option = Convert.ToInt32(Console.ReadLine());
+                            switch (option)
+                            {
+                                case 1:
+                                    contact.LastName = Console.ReadLine();
+                                    break;
+                                case 2:
+                                    contact.Address = Console.ReadLine();
+                                    break;
+                                case 3:
+                                    contact.City = Console.ReadLine();
+                                    break;
+                                case 4:
+                                    contact.State = Console.ReadLine();
+                                    break;
+                                case 5:
+                                    contact.Zip = Console.ReadLine();
+                                    break;
+                                case 6:
+                                    contact.PhoneNumber = Console.ReadLine();
+                                    break;
+                                case 7:
+                                    contact.Email = Console.ReadLine();
+                                    break;
+                            }
                         }
                     }
                 }
