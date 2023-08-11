@@ -8,10 +8,11 @@ namespace AddressBook
         {
             string key = null, input = null;
             AddressBook addressbook = new AddressBook();
-            Console.WriteLine("Enter the option to proceed\n 1.Create Contact\n 2.Add to Dictionary\n 3.Edit Contact\n 4.Delete Contact\n 5.Display Contact\n 6.Exit ");
             bool flag = true;
             while (flag)
             {
+                Console.WriteLine("Enter the option to proceed\n 1.Create Contact\n 2.Add to Dictionary\n 3.Edit Contact\n 4.Delete Contact\n 5.Display Contact\n 6.Exit ");
+
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
@@ -42,7 +43,7 @@ namespace AddressBook
                         addressbook.AddToJsonFile(filepath);
                         break;
                     case 7:
-                        //abook.SearchByCityOrState();
+                        addressbook.SearchByCityOrState();
                         break;
                     case 8:
                         flag = false;
