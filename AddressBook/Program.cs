@@ -42,6 +42,9 @@ namespace AddressBook
                         addressbook.AddToJsonFile(filepath);
                         break;
                     case 7:
+                        //abook.SearchByCityOrState();
+                        break;
+                    case 8:
                         flag = false;
                         break;
 

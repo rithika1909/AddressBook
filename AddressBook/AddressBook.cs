@@ -27,11 +27,27 @@ namespace AddressBook
                 PhoneNumber = Console.ReadLine(),
                 Email = Console.ReadLine()
             };
-            Console.WriteLine("The entered details:\n" + "First Name:" + contact.FirstName + '\n'
-                + "Last Name:" + contact.LastName + '\n' + "Address:" + contact.Address + '\n' + "City:"
-                + contact.City + '\n' + "State:" + contact.State + '\n' + "Zip:" + contact.Zip + '\n'
-                + "PhoneNumber:" + contact.PhoneNumber + '\n' + "Email:" + contact.Email + '\n');
-            createAddressBook.Add(contact);
+            int count = 0;
+            foreach (var data in dict)
+            {
+                foreach (var item in data.Value)
+                {
+                    if (item.FirstName.Equals(contact.FirstName))
+                    {
+                        Console.WriteLine("Name already exists");
+                        count++;
+                    }
+                }
+            }
+            if (count == 0)
+            {
+                Console.WriteLine("The entered details:\n" + "First Name:" + contact.FirstName + '\n'
+                     + "Last Name:" + contact.LastName + '\n' + "Address:" + contact.Address + '\n' + "City:"
+                     + contact.City + '\n' + "State:" + contact.State + '\n' + "Zip:" + contact.Zip + '\n'
+                     + "PhoneNumber:" + contact.PhoneNumber + '\n' + "Email:" + contact.Email + '\n');
+                createAddressBook.Add(contact);
+            }
+
         }
         public void AddAddressBookToDictionary()
         {
@@ -47,7 +63,7 @@ namespace AddressBook
         }
         public void EditContact(string name, string contactName)
         {
-            foreach (var data  in dict)
+            foreach (var data in dict)
             {
                 if (data.Key.Equals(name))
                 {
@@ -93,11 +109,11 @@ namespace AddressBook
             Contact contact = new Contact();
             foreach (var data in dict)
             {
-                if(data.Key.Equals(name))
+                if (data.Key.Equals(name))
                 {
-                    foreach(var item in data.Value)
+                    foreach (var item in data.Value)
                     {
-                        if(item.FirstName.Equals(name) || item.LastName.Equals(name))
+                        if (item.FirstName.Equals(name) || item.LastName.Equals(name))
                         {
                             contact = item;
                         }
@@ -109,19 +125,53 @@ namespace AddressBook
                     Console.WriteLine("No dictionary with key exits");
                 }
             }
-          
+
         }
         public void Display()
         {
-            foreach(var data in dict)
+            foreach (var data in dict)
             {
                 Console.WriteLine(data.Key);
-                foreach(var contact in data.Value)
+                foreach (var contact in data.Value)
                 {
                     Console.WriteLine(contact.FirstName + "\n" + contact.LastName + "\n" + contact.Address + "\n" + contact.City + "\n" + contact.State + "\n" + contact.Zip + "\n" + contact.PhoneNumber + "\n" + contact.Email);
                 }
             }
 
+        }
+
+        public void SearchByCityOrState()
+        {
+            Console.WriteLine("Enter the number to Search 1.City\n2.State");
+            int num = Convert.ToInt32(Console.ReadLine());
+            if (num == 1)
+            {
+                Console.WriteLine("Enter the city to search");
+                string city = Console.ReadLine();
+                List<Contact> contact = new List<Contact>();
+                foreach (var data in dict)
+                {
+                    contact = data.Value.Where(x => x.City.Equals(city)).ToList();
+                }
+                foreach (var Contact in contact)
+                {
+                    Console.WriteLine(Contact.FirstName + " " + Contact.FirstName + "is found in the Address Book");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Enter the State to search");
+                string state = Console.ReadLine();
+                List<Contact> contact = new List<Contact>();
+                foreach (var data in dict)
+                {
+                    contact = data.Value.Where(x => x.State.Equals(state)).ToList();
+                }
+                foreach (var Contact in contact)
+                {
+                    Console.WriteLine(Contact.FirstName + " " + Contact.FirstName + "is found in the Address Book");
+                }
+            }
         }
     }
 }
