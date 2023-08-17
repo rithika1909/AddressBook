@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +13,10 @@ namespace AddressBook
         Contact contact = new Contact();
         List<Contact> createAddressBook = new List<Contact>();
         Dictionary<string, List<Contact>> dict = new Dictionary<string, List<Contact>>();
+        Dictionary<string, List<Contact>> city = new Dictionary<string, List<Contact>>();
+        Dictionary<string, List<Contact>> state = new Dictionary<string, List<Contact>>();
+
+
         public void CreateContact()
         {
             Console.WriteLine("Enter the details\n 1.First Name:\n 2.Last Name:\n 3.Address:\n 4.City:\n 5.State:\n" +
@@ -54,6 +59,7 @@ namespace AddressBook
             string uniqueName = Console.ReadLine();
             dict.Add(uniqueName, createAddressBook);
             createAddressBook = new List<Contact>();
+            Console.WriteLine("Added");
 
         }
         public void AddToJsonFile(string filePath)
@@ -139,7 +145,7 @@ namespace AddressBook
             }
 
         }
-        int CityCount=0, StateCount=0;
+        int CityCount = 0, StateCount = 0;
 
         public void SearchByCityOrState()
         {
@@ -160,12 +166,13 @@ namespace AddressBook
                             foreach (var Contact in contact)
                             {
                                 Console.WriteLine(Contact.FirstName + " " + Contact.LastName);
+                                this.city.Add(data.Key, contact);
                                 CityCount++;
                             }
                         }
                         Console.WriteLine("Number of persons in " + city + " is: " + CityCount);
                         break;
-                        
+
                     case 2:
                         Console.WriteLine("Enter the State to search");
                         string state = Console.ReadLine();
@@ -177,6 +184,7 @@ namespace AddressBook
                             foreach (var Contact in contact1)
                             {
                                 Console.WriteLine(Contact.FirstName + " " + Contact.LastName);
+                                this.state.Add(data.Key, contact1);
                                 StateCount++;
                             }
                         }
@@ -187,7 +195,40 @@ namespace AddressBook
                         break;
                 }
             }
+
+
+
+
+
+
+
+
+
+
         }
-   
+        public void SortedByName()
+        {
+            List<string> list = new List<string>();
+            List<Contact> contacts = new List<Contact>();
+            foreach (var data in dict)
+            {
+                foreach (var item in data.Value)
+                {
+                    list.Add(item.FirstName);
+                    contacts.Add(item);
+                }
+            }
+            list.Sort();
+            foreach (var data in list)
+            {
+                foreach (var contact in contacts)
+                {
+                    if (contact.FirstName.Equals(data))
+                    {
+                        Console.WriteLine(contact.FirstName + "\n" + contact.LastName + "\n" + contact.Address + "\n" + contact.City + "\n" + contact.State + "\n" + contact.Zip + "\n" + contact.PhoneNumber + "\n" + contact.Email);
+                    }
+                }
+            }
+        }
     }
 }
