@@ -6,6 +6,7 @@ namespace AddressBook
         const string filepath = @"D:\AddressBook\AddressBook\AddressBook.json";
         static string file_path = @"D:\AddressBook\AddressBook\Contact.txt";
         static string csvFilepath = @"D:\AddressBook\AddressBook\Contact.csv";
+       
         public static void Main(string[] args)
         {
             string key = null, input = null;
@@ -13,7 +14,7 @@ namespace AddressBook
             bool flag = true;
             while (flag)
             {
-                Console.WriteLine("Enter the option to proceed\n 1.Create Contact\n 2.Add to Dictionary\n 3.Edit Contact\n 4.Delete Contact\n 5.Display Contact\n 7.Search by state or city\n 8.Sort By Name\n 9.Write to File\n 10.Read from File\n 11.Write as CSV File\n 12.Read as CSV File\n 13.Exit");
+                Console.WriteLine("Enter the option to proceed\n 1.Create Contact\n 2.Add to Dictionary\n 3.Edit Contact\n 4.Delete Contact\n 5.Display Contact\n 7.Search by state or city\n 8.Sort By Name\n 9.Write to File\n 10.Read from File\n 11.Write as CSV File\n 12.Read as CSV File\n 13.Write as JSON File\n 14.Read as JSON File\n 15.Exit");
 
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
@@ -63,6 +64,12 @@ namespace AddressBook
                         addressbook.ReadFromCSVFile(csvFilepath);
                         break;
                     case 13:
+                        addressbook.AddToJsonFile(filepath);
+                        break;
+                    case 14:
+                        addressbook.ReadFromJsonFile(filepath);
+                        break;
+                    case 15:
                         flag = false;
                         break;
 
