@@ -46,7 +46,7 @@ namespace AddressBook
                         addressbook.SearchByCityOrState();
                         break;
                     case 8:
-                        addressbook.SortedByName();
+                        addressbook.Sort();
                         break;
                     case 9:
                         flag = false;
