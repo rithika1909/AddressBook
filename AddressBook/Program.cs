@@ -4,6 +4,7 @@ namespace AddressBook
     class Program
     {
         const string filepath = @"D:\AddressBook\AddressBook\AddressBook.json";
+        static string file_path = @"D:\AddressBook\AddressBook\Contact.txt";
         public static void Main(string[] args)
         {
             string key = null, input = null;
@@ -49,6 +50,12 @@ namespace AddressBook
                         addressbook.Sort();
                         break;
                     case 9:
+                        addressbook.ReadFromStreamReader(file_path);
+                        break;
+                    case 10:
+                        addressbook.WriteFromStreamWriter(file_path);
+                        break;
+                    case 11:
                         flag = false;
                         break;
 
